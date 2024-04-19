@@ -1,0 +1,4 @@
+﻿  ClientPartPcapLib.cpp
+C:\Users\CCIRF\source\WpdPack\Include\pcap\pcap.h(41,12): error C1083: Не удается открыть файл включение: pcap-stdinc.h: No such file or directory,
+  (компиляция исходного файла "ClientPartPcapLib.cpp")
+  
