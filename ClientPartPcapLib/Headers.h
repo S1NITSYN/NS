@@ -17,6 +17,7 @@
 #define IP_PROTO            0x0800
 #define MAC_SIZE            6
 #define STD_IP_VERLEN       0x45
+#define DNS_TYPE_PTR        12
 
 
 #define PKT_GET_ETH_HDR(p)        \
@@ -117,15 +118,23 @@ struct dns_header
     UINT16  id;
     UINT16  flags;
 
-#define GET_DNS_QR(fl)              (fl >> 15)
-#define GET_DNS_OPCODE(fl)          (fl >> 11)
-#define GET_DNS_AA(fl)              (fl >> 10)
-#define GET_DNS_TC(fl)              (fl >> 9)
-#define GET_DNS_RD(fl)              (fl >> 8)
-#define GET_DNS_RA(fl)              (fl >> 7)
+#define GET_DNS_QR(fl)              (fl >> 15) & 0x1
+#define GET_DNS_OPCODE(fl)          (fl >> 11) & 0x4
+#define GET_DNS_AA(fl)              (fl >> 10) & 0x1
+#define GET_DNS_TC(fl)              (fl >> 9) & 0x1
+#define GET_DNS_RD(fl)              (fl >> 8) & 0x1
+#define GET_DNS_RA(fl)              (fl >> 7) & 0x1
+#define GET_DNS_RCODE(fl)           (fl >> 0) & 0x4
 
-#define GET_DNS_RD(fl)              (fl >> 8)
-#define GET_DNS_QR(fl)              (fl >> 0)
+#define SET_DNS_QR(fl)              (fl << 15)
+#define SET_DNS_OPCODE(fl)          (fl << 11)
+#define SET_DNS_AA(fl)              (fl << 10)
+#define SET_DNS_TC(fl)              (fl << 9)
+#define SET_DNS_RD(fl)              (fl << 8)
+#define SET_DNS_RA(fl)              (fl << 7)
+#define SET_DNS_RCODE(fl)           (fl << 0)
+
+
 
     UINT16  qdcount;
     UINT16  ancount;

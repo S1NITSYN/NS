@@ -1,0 +1,7 @@
+﻿  ClientPart.cpp
+C:\Users\CCIRF\source\repos\ClientPart\ClientPart\ClientPart.cpp(377,24): warning C4133: функция: несовместимые типы - из "SOCKADDR_IN *" в "const sockaddr *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPart\ClientPart.cpp(387,68): warning C4244: функция: преобразование "unsigned __int64" в "u_short", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPart\ClientPart.cpp(433,16): warning C4047: функция: "SOCKET" отличается по уровням косвенного обращения от "int (__cdecl *)(void)"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPart\ClientPart.cpp(433,16): warning C4024: client_listen: различные типы для формального и фактического параметров 1
+C:\Users\CCIRF\source\repos\ClientPart\ClientPart\ClientPart.cpp(363,32): warning C4101: source_ip: неиспользованная локальная переменная
+  ClientPart.vcxproj -> C:\Users\CCIRF\source\repos\ClientPart\x64\Debug\ClientPart.exe

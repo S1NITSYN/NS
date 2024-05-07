@@ -1,64 +1,60 @@
-﻿  ClientPartPcapLib.cpp
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (ClientPartPcapLib.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  NS.cpp
 C:\Users\CCIRF\source\WpdPack\Include\IP6_misc.h(33,1): warning C4005: IN_MULTICAST: изменение макроопределения
-  (компиляция исходного файла "ClientPartPcapLib.cpp")
+  (компиляция исходного файла "NS.cpp")
   C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\ws2def.h(598,1):
   см. предыдущее определение "IN_MULTICAST"
   
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(47,1): warning C4005: GET_IP_VERSION: изменение макроопределения
-  (компиляция исходного файла "ClientPartPcapLib.cpp")
-  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(46,1):
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(48,1): warning C4005: GET_IP_VERSION: изменение макроопределения
+  (компиляция исходного файла "NS.cpp")
+  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(47,1):
   см. предыдущее определение "GET_IP_VERSION"
   
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(128,1): warning C4005: GET_DNS_QR: изменение макроопределения
-  (компиляция исходного файла "ClientPartPcapLib.cpp")
-  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\Headers.h(120,1):
-  см. предыдущее определение "GET_DNS_QR"
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\getopt.h(59,30): warning C4081: требуется "newline"; обнаружен ";"
+  (компиляция исходного файла "NS.cpp")
   
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(53,38): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(69,39): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(89,61): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(94,42): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(99,61): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(104,43): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(87,28): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "tcp_header *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(97,28): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "udp_header *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(185,22): warning C4267: инициализация: преобразование из "size_t" в "UINT32"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(200,34): warning C4047: функция: "u_short" отличается по уровням косвенного обращения от "UINT8 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(200,34): warning C4024: htons: различные типы для формального и фактического параметров 1
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(206,26): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "dns_question *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(225,87): warning C4244: функция: преобразование "unsigned __int64" в "u_short", возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(226,39): warning C4133: функция: несовместимые типы - из "ip_header *" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(244,64): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(245,87): warning C4244: функция: преобразование "unsigned __int64" в "u_short", возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(246,39): warning C4133: функция: несовместимые типы - из "ip_header *" в "UINT16 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(281,25): warning C4473: "fprintf": передано недостаточно аргументов для строки формата
-  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(281,25):
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(54,38): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(69,39): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(89,61): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(94,42): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(99,61): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(104,43): warning C4133: функция: несовместимые типы - из "char [65536]" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(87,28): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "tcp_header *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(97,28): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "udp_header *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(186,48): warning C4244: =: преобразование "__int64" в "unsigned char", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(188,25): warning C4244: =: преобразование "__int64" в "unsigned char", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(203,26): warning C4133: инициализация: несовместимые типы - из "UINT8 *" в "dns_question *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(222,87): warning C4244: функция: преобразование "unsigned __int64" в "u_short", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(223,39): warning C4133: функция: несовместимые типы - из "ip_header *" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(241,64): warning C4267: функция: преобразование из "size_t" в "u_short"; возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(242,87): warning C4244: функция: преобразование "unsigned __int64" в "u_short", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(243,39): warning C4133: функция: несовместимые типы - из "ip_header *" в "UINT16 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(278,25): warning C4473: "fprintf": передано недостаточно аргументов для строки формата
+  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(278,25):
   заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 0
-  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(281,25):
+  C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(278,25):
   отсутствующий вариативный аргумент "1" требуется для строки форматирования "%s"
   
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(282,9): warning C4033: "device_init" должен возвращать значение
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(310,52): warning C4244: функция: преобразование "u_long" в "UINT8", возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(310,75): warning C4244: функция: преобразование "u_long" в "UINT16", возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(316,29): warning C4133: функция: несовместимые типы - из "UINT8 *" в "pcap_t *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(359,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(364,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(369,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(374,50): warning C4090: функция: разные квалификаторы "const"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(374,39): warning C4113: "void (__cdecl *)(UINT8 *,pcap_pkthdr *,UINT8 *)" отличается в списках параметров от "pcap_handler"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(374,52): warning C4133: функция: несовместимые типы - из "pcap_t *" в "u_char *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(374,12): warning C4047: =: "const u_char *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(347,24): warning C4101: header: неиспользованная локальная переменная
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(400,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(405,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(410,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(423,18): warning C4090: return: разные квалификаторы "const"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(387,17): warning C4047: инициализация: "bpf_u_int32" отличается по уровням косвенного обращения от "UINT8 *"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(485,72): warning C4267: функция: преобразование из "size_t" в "UINT32"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(492,47): warning C4047: функция: "UINT8 *" отличается по уровням косвенного обращения от "int"
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(492,47): warning C4024: create_dns_header: различные типы для формального и фактического параметров 2
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(509,41): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(493,92): warning C4267: инициализация: преобразование из "size_t" в "UINT32"; возможна потеря данных
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(39,1): warning C4172: возвращение адреса локальной или временной переменной : psd_header
-C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\ClientPartPcapLib.cpp(291,1): warning C4715: device_init: значение возвращается не при всех путях выполнения
-  ClientPartPcapLib.vcxproj -> C:\Users\CCIRF\source\repos\ClientPart\x64\Debug\ClientPartPcapLib.exe
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(279,9): warning C4033: "device_init" должен возвращать значение
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(307,52): warning C4244: функция: преобразование "u_long" в "UINT8", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(307,75): warning C4244: функция: преобразование "u_long" в "UINT16", возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(313,29): warning C4133: функция: несовместимые типы - из "UINT8 *" в "pcap_t *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(356,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(361,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(366,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(371,50): warning C4090: функция: разные квалификаторы "const"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(371,39): warning C4113: "void (__cdecl *)(UINT8 *,pcap_pkthdr *,UINT8 *)" отличается в списках параметров от "pcap_handler"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(371,52): warning C4133: функция: несовместимые типы - из "pcap_t *" в "u_char *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(371,12): warning C4047: =: "const u_char *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(344,24): warning C4101: header: неиспользованная локальная переменная
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(397,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(402,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(407,9): warning C4047: return: "UINT8 *" отличается по уровням косвенного обращения от "int"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(420,18): warning C4090: return: разные квалификаторы "const"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(384,17): warning C4047: инициализация: "bpf_u_int32" отличается по уровням косвенного обращения от "UINT8 *"
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(609,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(581,97): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(40,1): warning C4172: возвращение адреса локальной или временной переменной : psd_header
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(189,1): warning C4716: domain_name_to_dns_format: должна возвращать значение
+C:\Users\CCIRF\source\repos\ClientPart\ClientPartPcapLib\NS.cpp(288,1): warning C4715: device_init: значение возвращается не при всех путях выполнения
+  ClientPartPcapLib.vcxproj -> C:\Users\CCIRF\source\repos\ClientPart\x64\Debug\NS.exe
