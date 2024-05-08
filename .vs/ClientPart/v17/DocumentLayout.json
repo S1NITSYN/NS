@@ -3,19 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\Headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|solutionrelative:ClientPartPcapLib\\Headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\NS.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|solutionrelative:ClientPartPcapLib\\NS.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4A82F286-7D8E-4924-AD25-63A76027C983}|ClientPart\\ClientPart.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPart\\ClientPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{4A82F286-7D8E-4924-AD25-63A76027C983}|ClientPart\\ClientPart.vcxproj|solutionrelative:ClientPart\\ClientPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{84687466-EF67-47D6-9DF6-10681149960B}|..\\ServerPart\\ServerPart\\ServerPart.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ServerPart\\ServerPart\\ServerPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{84687466-EF67-47D6-9DF6-10681149960B}|..\\ServerPart\\ServerPart\\ServerPart.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ServerPart\\ServerPart\\ServerPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\Headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1A00B8EE-B64C-4E72-A635-261D28F45ED2}|ClientPartPcapLib\\ClientPartPcapLib.vcxproj|solutionrelative:ClientPartPcapLib\\Headers.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A82F286-7D8E-4924-AD25-63A76027C983}|ClientPart\\ClientPart.vcxproj|C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPart\\ClientPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{4A82F286-7D8E-4924-AD25-63A76027C983}|ClientPart\\ClientPart.vcxproj|solutionrelative:ClientPart\\ClientPart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,7 +25,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 26,
+          "SelectedChildIndex": 27,
           "Children": [
             {
               "$type": "Bookmark",
@@ -133,33 +133,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Headers.h",
               "DocumentMoniker": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\Headers.h",
               "RelativeDocumentMoniker": "ClientPartPcapLib\\Headers.h",
               "ToolTip": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\Headers.h",
               "RelativeToolTip": "ClientPartPcapLib\\Headers.h",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAAAHEAAAACAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAgwCkAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-25T08:47:06.751Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "NS.cpp",
               "DocumentMoniker": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\NS.cpp",
               "RelativeDocumentMoniker": "ClientPartPcapLib\\NS.cpp",
               "ToolTip": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPartPcapLib\\NS.cpp",
               "RelativeToolTip": "ClientPartPcapLib\\NS.cpp",
-              "ViewState": "AQIAAB0CAAAAAAAAAAAwwC8CAAAAAAAA",
+              "ViewState": "AQIAAKcCAAAAAAAAAAAgwKsCAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-04-18T12:13:45.399Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ServerPart.cpp",
               "DocumentMoniker": "C:\\Users\\CCIRF\\source\\repos\\ServerPart\\ServerPart\\ServerPart.cpp",
               "RelativeDocumentMoniker": "..\\ServerPart\\ServerPart\\ServerPart.cpp",
@@ -167,11 +167,12 @@
               "RelativeToolTip": "..\\ServerPart\\ServerPart\\ServerPart.cpp",
               "ViewState": "AQIAACEAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-04-05T08:19:46.536Z"
+              "WhenOpened": "2024-04-05T08:19:46.536Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ClientPart.cpp",
               "DocumentMoniker": "C:\\Users\\CCIRF\\source\\repos\\ClientPart\\ClientPart\\ClientPart.cpp",
               "RelativeDocumentMoniker": "ClientPart\\ClientPart.cpp",

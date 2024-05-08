@@ -40,13 +40,20 @@ struct pseudo_header* fill_pseudo_header(struct ip_header* iph, int proto_type,i
     return &psd_header;
 }
 
+
+/*
+    I dont like these 3 functions.
+    They're closest copies of each other
+    exept main struct type
+    Need to fox it
+*/
 UINT16 TcpCheckSum(struct ip_header* iph, struct tcp_header* tcph, UINT8* data, UINT32 size)
 {
     tcph->th_sum = 0;
     
     struct pseudo_header* header = fill_pseudo_header(iph, IPPROTO_TCP, sizeof(struct tcp_header), size);
 
-    char tcpBuf[65536];
+    UINT8 tcpBuf[65536];
     memcpy(tcpBuf, header, sizeof(struct pseudo_header));
     memcpy(tcpBuf + sizeof(struct pseudo_header), tcph, sizeof(struct tcp_header));
     memcpy(tcpBuf + sizeof(struct pseudo_header) + sizeof(struct tcp_header), data, size);
@@ -61,13 +68,24 @@ UINT16 UdpCheckSum(struct ip_header* iph, struct udp_header* udph, UINT8* data, 
 
     struct pseudo_header* header = fill_pseudo_header(iph, IPPROTO_UDP, sizeof(struct udp_header), size);
 
-    char tcpBuf[65536];
+    UINT8 tcpBuf[65536];
     memcpy(tcpBuf,  header, sizeof(struct pseudo_header));
     memcpy(tcpBuf + sizeof(struct pseudo_header), udph, sizeof(struct udp_header));
     memcpy(tcpBuf + sizeof(struct pseudo_header) + sizeof(struct udp_header), data, size);
 
     return udph->udp_sum = IpCheckSum(tcpBuf,
         sizeof(struct pseudo_header) + sizeof(struct udp_header) + size);
+}
+
+UINT16 IcmpCheckSum(struct ip_header* iph, struct icmp_header* icmph, UINT8* data, UINT32 size)
+{
+    icmph->crc = 0;
+
+    UINT8 icmpBuf[65536];
+    memcpy(icmpBuf, icmph, sizeof(struct icmp_header));
+    memcpy(icmpBuf+ sizeof(struct icmp_header), data, size);
+
+    return icmph->crc = IpCheckSum(icmpBuf, + sizeof(struct icmp_header) + size);
 }
 
 UINT16 TcpUdpCheckSum(struct ip_header* iph, UINT8* hdr, UINT8* data, UINT32 size, UINT32 proto)
@@ -78,7 +96,7 @@ UINT16 TcpUdpCheckSum(struct ip_header* iph, UINT8* hdr, UINT8* data, UINT32 siz
     psd_header.zero = 0;
     psd_header.proto = proto;
 
-    char tcpBuf[65536];
+    UINT8 tcpBuf[65536];
     memcpy(tcpBuf, &psd_header, sizeof(struct pseudo_header));
 
     switch (proto)
@@ -175,11 +193,23 @@ struct udp_header* create_udp_header(UINT16 udp_sport, UINT16 udp_dport)
     return udp_header_ex;
 }
 
-//takes only default markers
-UINT8* domain_name_to_dns_format(char* dns, char* host)
+struct icmp_header* create_icmp_header(UINT8 type, UINT8 code, UINT16 identifier/*, UINT8* payload*/)
 {
-    unsigned char* dst = (unsigned char*)dns
-        , * src = (unsigned char*)host
+    struct icmp_header* icmp_header_ex = calloc(sizeof(struct icmp_header), sizeof(UINT8));
+
+    icmp_header_ex->type = type;
+    icmp_header_ex->code = code;
+    icmp_header_ex->identifier = htons(identifier);
+    icmp_header_ex->seq_num = 0;
+
+    return icmp_header_ex;
+}
+
+//takes only default markers
+UINT8* domain_name_to_dns_format(UINT8* dns, UINT8* host)
+{
+    UINT8* dst = (UINT8*)dns
+        , * src = (UINT8*)host
         , * tick;
 
     for (tick = dst++; *dst = *src++; dst++) {
@@ -246,6 +276,25 @@ UINT8* create_udp_packet(struct eth_header* eth_filled_ex, struct ip_header* ip_
     return buf;
 }
 
+UINT8* create_icmp_packet(struct eth_header* eth_filled_ex, struct ip_header* ip_filled_ex, struct icmp_header* icmp_filled_ex, UINT8 * data, UINT32 size_of_data)
+{
+    UINT8* buf = (UINT8*)calloc(1000, sizeof(UINT8));
+    struct eth_header* eth_empty_ex = PKT_GET_ETH_HDR(buf);
+    *eth_empty_ex = *eth_filled_ex;
+    struct ip_header* ip4_empty_ex = PKT_GET_IP_HDR(buf);
+    *ip4_empty_ex = *ip_filled_ex;
+    struct icmp_header* icmp_empty_ex = PKT_GET_ICMP_HDR(buf);
+    *icmp_empty_ex = *icmp_filled_ex;
+    UINT8* data_empty = PKT_GET_ICMP_DATA(buf);
+    memcpy(data_empty, data, size_of_data);
+
+    ip4_empty_ex->ip_len = htons(sizeof(struct ip_header) + sizeof(struct icmp_header) + size_of_data);
+    ip4_empty_ex->ip_sum = IpCheckSum(ip4_empty_ex, sizeof(struct ip_header));
+    icmp_empty_ex->crc = IcmpCheckSum(ip4_empty_ex, icmp_empty_ex, data, size_of_data);
+
+    return buf;
+}
+
 //char* packet_fill_poor(unsigned char* mac_dst, unsigned char* mac_src, char* ip_src, char* ip_dst)
 //{
 //    return packet_fill(mac_dst, mac_src, 0, 0, 0, 0, ip_src, ip_dst, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -296,8 +345,8 @@ void my_callback(UINT8* handle, struct pcap_pkthdr* pkthdr, UINT8* packet)
     UINT16 flags = ntohs(tcp_hdr->th_offset_flags); 
     
     int own_flags[] = {0, 0, 0, 0, 1, 0, 0, 0, 0};
-    char dst_addr_str[INET_ADDRSTRLEN];
-    char src_addr_str[INET_ADDRSTRLEN];
+    UINT8 dst_addr_str[INET_ADDRSTRLEN];
+    UINT8 src_addr_str[INET_ADDRSTRLEN];
 
     inet_ntop(AF_INET, &(ip_hdr->ip_dst), dst_addr_str, INET_ADDRSTRLEN);
     inet_ntop(AF_INET, &(ip_hdr->ip_src), src_addr_str, INET_ADDRSTRLEN);
@@ -308,7 +357,7 @@ void my_callback(UINT8* handle, struct pcap_pkthdr* pkthdr, UINT8* packet)
                                                 IPPROTO_TCP, dst_addr_str, src_addr_str);
         struct tcp_header* tcp_ex = create_tcp_header(ntohs(tcp_hdr->th_dport), ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_seq) + 1,
             ntohl(tcp_hdr->th_ack), ntohs(tcp_hdr->th_win), ntohs(tcp_hdr->th_urp), own_flags);
-        char* buf = create_tcp_packet(eth_ex, ip_ex, tcp_ex, "", 0);
+        UINT8* buf = create_tcp_packet(eth_ex, ip_ex, tcp_ex, "", 0);
 
         if (pcap_sendpacket(handle, buf, sizeof(struct eth_header) + sizeof(struct ip_header) + sizeof(struct tcp_header)/* size */) != 0)
         {
@@ -334,15 +383,15 @@ void my_callback(UINT8* handle, struct pcap_pkthdr* pkthdr, UINT8* packet)
 
 UINT8* capture_packet(UINT8* device_name, UINT8* filter, UINT8* ip) {
     pcap_t* handle;  /* Дескриптор сессии */
-    char* dev = device_name;  /* Устройство для сниффинга */
-    char errbuf[PCAP_ERRBUF_SIZE]; /* Строка для хранения ошибок */
+    UINT8* dev = device_name;  /* Устройство для сниффинга */
+    UINT8 errbuf[PCAP_ERRBUF_SIZE]; /* Строка для хранения ошибок */
     struct bpf_program fp;  /* Скомпилированный фильтр */
-    char* filter_exp = filter;//"port 1234"; /* Выражение фильтра */
+    UINT8* filter_exp = filter;//"port 1234"; /* Выражение фильтра */
     bpf_u_int32 mask;  /* Сетевая маска устройства */
     bpf_u_int32 net = ntohl(inet_addr(ip));  /* IP устройства */
     //printf("%x\n", net);
     struct pcap_pkthdr header; /* Заголовок который нам дает PCAP */
-    const u_char* packet;  /* Пакет */
+    const UINT8* packet;  /* Пакет */
 
     if (pcap_lookupnet(dev, &net, &mask, errbuf) == -1) {
         fprintf(stderr, "Can't get netmask for device %s\n", dev);
@@ -420,9 +469,20 @@ UINT8* capture_solo_packet(UINT8* device_name, UINT8* filter, UINT8* ip, UINT32*
     return packet;
 }
 
+void packet_print(UINT8* buf, int size)
+{
+    for (int i = 1; i < size + 1; i++) {
+        printf("%02X ", buf[i - 1]);
+        if (i % 8 == 0) {
+            printf(" ");
+        }
+        if (i % 16 == 0) {
+            printf("\n");
+        }
+    }
+}
 
-static char* possible_params[] = {"-tcp", "-udp", "-dns", "-manual"};
-static char* manual_information =
+static UINT8* manual_information =
 "       -manual - manual info\n\n\
         -udp - will be an add-on over ip packet\n\
         params:\n\
@@ -440,19 +500,15 @@ static char* manual_information =
 void main(UINT32 argc, UINT8** argv)
 {
     setlocale(LC_ALL, "Rus");
-    /*char* checker = check_params(argc, argv);
-    if (checker) {
-        printf("\"%s\"%s", checker, " не является внутренней командой ClientPartPcapLib\n\
-Используйте \"-manual\" для получения более подробной информации");
-        return;
-    }*/
 
     UINT8* dev = "rpcap://\\Device\\NPF_{7C48B9B9-A20D-4319-9391-990FFA7D0016}";
 
-    UINT8* ip_src = "192.168.232.133"; //получать ip устройства в сети с помощью какого-либо API
+    UINT8* ip_src = "192.168.232.133"; //192.168.198.110 //получать ip устройства в сети с помощью какого-либо API
     UINT8* ip_dst = "208.67.222.222";
 
     pcap_t* handle = device_init(dev);
+
+    //UINT8 mac_dst[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
 
     UINT8 mac_dst[] = { 0x7c, 0x69, 0xf6 , 0xb3, 0x7d, 0xc7 };
     UINT8 mac_src[] = { 0x20, 0x4e, 0xf6, 0x9a, 0xfd, 0x73 };
@@ -479,14 +535,8 @@ void main(UINT32 argc, UINT8** argv)
     int length = std_length + sizeof(struct udp_header);
 
     int res = 0;
-    
-    //int flag_udp = 0;
-    //int flag_tcp = 0;
-    //int flag_dns = 0;
 
-    //const char* short_opts = "utd";
-
-    const struct option long_options[] = { //questions with flag field
+    const struct option options[] = { //questions with flag field
         {
             .name = "man",
             .has_arg = no_argument,
@@ -517,7 +567,7 @@ void main(UINT32 argc, UINT8** argv)
 
         {
             .name = "icmp",
-            .has_arg = required_argument,
+            .has_arg = required_argument, //required_argument
             .flag = 0,
             .val = 'i'
         },
@@ -531,9 +581,11 @@ void main(UINT32 argc, UINT8** argv)
 
         { NULL, 0, NULL, 0}
     };
+    UINT8 for_ans = 'd';
 
-    while ((res = getopt_long_only(argc, argv, "", long_options, NULL)) != -1) { //third param - short_opts, 
-        switch (res)
+    while ((res = getopt_long_only(argc, argv, "", options, NULL)) != -1) { //third param - short_opts, 
+        for_ans = res;
+        switch (res) //стоит добавить опцию ip пакета, где можно менять ip адреса, и другие параметры
         {
         case 'm':
         case 'l':
@@ -541,7 +593,7 @@ void main(UINT32 argc, UINT8** argv)
             return;
 
         case 'u':
-            char* ports = strstr(optarg, "dport=");
+            UINT8 * ports = strstr(optarg, "dport=");
             if (ports != NULL) {
                 int DPORT = 0;
                 sscanf(ports, "dport=%u", &DPORT);
@@ -563,8 +615,8 @@ void main(UINT32 argc, UINT8** argv)
         case 'd':
             UINT16 type = 1;
             UINT8 name[100];
-            char* name_check = strstr(optarg, "name=");
-            char* dns_type_check = strstr(optarg, "type=");
+            UINT8* name_check = strstr(optarg, "name=");
+            UINT8* dns_type_check = strstr(optarg, "type=");
             if (name_check != NULL && dns_type_check != NULL) {
                 sscanf(name_check, "name=%[^,]", name);
             }
@@ -572,7 +624,7 @@ void main(UINT32 argc, UINT8** argv)
                 sscanf(name_check, "name=%s", name);
             }
             //else { break; }
-            char* dns_type = calloc(100, sizeof(UINT8));
+            UINT8* dns_type = calloc(100, sizeof(UINT8));
             if (dns_type_check != NULL) {
                 sscanf(dns_type_check, "type=%s", dns_type);
                 if (strcmp(dns_type, "ptr") == 0) {
@@ -591,12 +643,26 @@ void main(UINT32 argc, UINT8** argv)
 
             break;
 
+        case 'i':
+            ip_ex->ip_p = IPPROTO_ICMP;
+
+            UINT8* ip_dst = calloc(20, sizeof(UINT8));
+            UINT8* ip_dst_check = strstr(optarg, "ipdest=");
+            if (ip_dst_check != NULL) {
+                int DPORT = 0;
+                sscanf(ip_dst_check, "ipdest=%s", ip_dst);
+                ip_ex->ip_dst = inet_addr(ip_dst);
+            }
+            UINT8* icmp_ex = create_icmp_header(8, 0, 1);
+            buf = create_icmp_packet(eth_ex, ip_ex, icmp_ex, "", 0);
+            length = sizeof(struct icmp_header) + sizeof(struct ip_header) + sizeof(struct eth_header);
+            break;
+
         default:
             printf("вы указали неверную опцию, попробуйте еще");
             return;
         }
     }
-
 
     if (pcap_sendpacket(handle, buf, length) != 0)
     {
@@ -604,25 +670,36 @@ void main(UINT32 argc, UINT8** argv)
         return;
     }
 
-    //receiving
-    char string[6];
-    itoa(sport, string, 10);
-    char filter[12];
-    snprintf(filter, sizeof(filter), "%s%s", "port ", string); //уйти от зависимости к порту
+    //Добавить фильтрацию данных по разным критериям к каждому кейсу
+    UINT8 filter[100];
+    switch (for_ans) //стоит добавить опцию ip пакета, где можно менять ip адреса, и другие параметры
+    {
+    case 'u':
+    case 'd':
+        UINT8 port[50];
+        itoa(sport, port, 10);
+        snprintf(filter, sizeof(filter), "%s%s", "port ", port);
+        break;
+    case 't':
+        //рукопожатия, все дела
+        break;
+    case 'i':
+        UINT8 mac_filter[50];
 
-    UINT32 receive_pckt_sz = 0;
-    UINT8* dns_receive = capture_solo_packet(dev, filter, ip_dst, &receive_pckt_sz);
+        snprintf(filter, sizeof(filter), "%s%s", "icmp[icmptype]", "== icmp-echoreply");
 
-    for (int i = 0; i < receive_pckt_sz; i++) {
-        printf("0x%x\t", dns_receive[i]);
-        if (i % 8 == 0) {
-            printf("\t");
-        }
-        if (i % 16 == 0) {
-            printf("\n");
-        }
+        break;
+
+    default:
+        printf("Ответа нет");
+        return;
     }
 
+
+    UINT32 receive_pckt_sz = 0;
+    UINT8* received_packet = capture_solo_packet(dev, filter, ip_dst, &receive_pckt_sz);
+
+    packet_print(received_packet, receive_pckt_sz);
 
     //char string[6];
     //itoa(sport, string, 10);

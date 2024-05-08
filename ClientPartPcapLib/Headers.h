@@ -28,10 +28,14 @@
     ((struct tcp_header *) ((UINT8 *)(PKT_GET_IP_HDR(p)) + sizeof(struct ip_header)))
 #define PKT_GET_UDP_HDR(p)       \
     ((struct udp_header *) ((UINT8 *)(PKT_GET_IP_HDR(p)) + sizeof(struct ip_header)))
+#define PKT_GET_ICMP_HDR(p)       \
+    ((struct icmp_header *) ((UINT8 *)(PKT_GET_IP_HDR(p)) + sizeof(struct ip_header)))
 #define PKT_GET_TCP_DATA(p)       \
     ((UINT8 *)(PKT_GET_TCP_HDR(p)) + sizeof(struct tcp_header))
 #define PKT_GET_UDP_DATA(p)       \
     ((UINT8 *)(PKT_GET_UDP_HDR(p)) + sizeof(struct udp_header))
+#define PKT_GET_ICMP_DATA(p)       \
+    ((UINT8 *)(PKT_GET_ICMP_HDR(p)) + sizeof(struct icmp_header))
 #define PKT_GET_UDP_DNS_DATA(p)     \
     ((UINT8 *)(PKT_GET_UDP_DATA(p)) + sizeof(struct dns_header))
 
@@ -108,9 +112,12 @@ struct icmp_header
     UINT8   type; // тип ICMP- пакета
     UINT8   code; // код ICMP- пакета 
     UINT16  crc; // контрольная сумма 
-    UINT32  orig_timestamp; // дополнительные поля 
-    UINT32  recv_timestamp; // уточняющие тип 
-    UINT32  trns_timestamp; //ICMP- пакета
+    UINT16  identifier;
+    UINT16  seq_num;
+    //UINT32  payload; //the same situation like in a dns packet
+    //UINT32  orig_timestamp; // дополнительные поля 
+    //UINT32  recv_timestamp; // уточняющие тип 
+    //UINT32  trns_timestamp; //ICMP- пакета
 };
 
 struct dns_header
